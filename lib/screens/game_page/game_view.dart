@@ -25,7 +25,7 @@ class GameHomeView extends StatelessWidget {
           style: TextStyle(fontSize: 30, color: Colors.green),
         ),
       ),
-      backgroundColor:const Color.fromARGB(255, 125, 200, 164),
+      backgroundColor: const Color.fromARGB(255, 125, 200, 164),
       body: BlocBuilder<DetermineCubit, DetermineState>(
         builder: ((context, state) {
           return GridView.builder(
@@ -33,7 +33,7 @@ class GameHomeView extends StatelessWidget {
                 crossAxisCount: 3),
             itemBuilder: (context, index) {
               return Padding(
-                padding:const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: InkWell(
                   child: CircleAvatar(
                     radius: 35,
@@ -44,7 +44,8 @@ class GameHomeView extends StatelessWidget {
                                 .watch<DetermineCubit>()
                                 .randNum[index]
                                 .toString(),
-                            style:const TextStyle(color: Colors.white, fontSize: 25),
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 25),
                           )
                         : const Text(""),
                   ),
@@ -67,14 +68,14 @@ class GameHomeView extends StatelessWidget {
               onPressed: () {
                 context.read<DetermineCubit>().restartRand();
               },
-              child:const Icon(Icons.reviews),
+              child: const Icon(Icons.restart_alt),
             ),
           ),
           FloatingActionButton(
             onPressed: () {
               context.read<DetermineCubit>().showRandoms();
             },
-            child:const Icon(Icons.open_in_browser),
+            child: const Icon(Icons.slideshow),
           ),
         ],
       ),
