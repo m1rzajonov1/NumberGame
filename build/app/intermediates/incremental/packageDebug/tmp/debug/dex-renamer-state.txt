@@ -1,4 +1,4 @@
-#Fri Apr 08 14:52:21 UZT 2022
+#Fri Apr 08 15:17:50 UZT 2022
 base.0=/home/m1rzajonov1/flutter_exam/NumberGame/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

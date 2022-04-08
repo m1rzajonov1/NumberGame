@@ -10,7 +10,9 @@ class GameHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: ((context) => DetermineCubit()),
-      child: myScaffold(context),
+      child: BlocBuilder<DetermineCubit, DetermineState>(
+        builder: ((context, state) => myScaffold(context)),
+      ),
     );
   }
 
@@ -26,38 +28,34 @@ class GameHomeView extends StatelessWidget {
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 125, 200, 164),
-      body: BlocBuilder<DetermineCubit, DetermineState>(
-        builder: ((context, state) {
-          return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: InkWell(
-                  child: CircleAvatar(
-                    radius: 35,
-                    backgroundColor: Colors.green,
-                    child: context.watch<DetermineCubit>().isVisible
-                        ? Text(
-                            context
-                                .watch<DetermineCubit>()
-                                .randNum[index]
-                                .toString(),
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 25),
-                          )
-                        : const Text(""),
-                  ),
-                  onTap: () {
-                    context.read<DetermineCubit>().tekshiribOchir(index);
-                  },
-                ),
-              );
-            },
-            itemCount: context.watch<DetermineCubit>().randNum.length,
+      body: GridView.builder(
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: InkWell(
+              child: CircleAvatar(
+                radius: 35,
+                backgroundColor: Colors.green,
+                child: context.watch<DetermineCubit>().isVisible
+                    ? Text(
+                        context
+                            .watch<DetermineCubit>()
+                            .randNum[index]
+                            .toString(),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 25),
+                      )
+                    : const Text(""),
+              ),
+              onTap: () {
+                context.read<DetermineCubit>().tekshiribOchir(index);
+              },
+            ),
           );
-        }),
+        },
+        itemCount: context.watch<DetermineCubit>().randNum.length,
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
