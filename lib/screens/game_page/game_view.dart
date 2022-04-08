@@ -25,33 +25,37 @@ class GameHomeView extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.greenAccent,
-      body: GridView.builder(
-        gridDelegate:
-          const  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.all(10.0),
-            child: InkWell(
-              child: CircleAvatar(
-                radius: 35,
-                backgroundColor: Colors.green,
-                child: context.watch<DetermineCubit>().isVisible
-                    ? Text(
-                        context
-                            .watch<DetermineCubit>()
-                            .randNum[index]
-                            .toString(),
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      )
-                    : const Text(""),
-              ),
-              onTap: () {
-                context.read<DetermineCubit>().tekshiribOchir(index);
-              },
-            ),
+      body: BlocBuilder(
+        builder: ((context, state) {
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding:const EdgeInsets.all(10.0),
+                child: InkWell(
+                  child: CircleAvatar(
+                    radius: 35,
+                    backgroundColor: Colors.green,
+                    child: context.watch<DetermineCubit>().isVisible
+                        ? Text(
+                            context
+                                .watch<DetermineCubit>()
+                                .randNum[index]
+                                .toString(),
+                            style:const TextStyle(color: Colors.white, fontSize: 25),
+                          )
+                        : const Text(""),
+                  ),
+                  onTap: () {
+                    context.read<DetermineCubit>().tekshiribOchir(index);
+                  },
+                ),
+              );
+            },
+            itemCount: context.watch<DetermineCubit>().randNum.length,
           );
-        },
-        itemCount: context.watch<DetermineCubit>().randNum.length,
+        }),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,14 +66,14 @@ class GameHomeView extends StatelessWidget {
               onPressed: () {
                 context.read<DetermineCubit>().restartRand();
               },
-              child: Icon(Icons.reviews),
+              child:const Icon(Icons.reviews),
             ),
           ),
           FloatingActionButton(
             onPressed: () {
               context.read<DetermineCubit>().showRandoms();
             },
-            child: Icon(Icons.open_in_browser),
+            child:const Icon(Icons.open_in_browser),
           ),
         ],
       ),
