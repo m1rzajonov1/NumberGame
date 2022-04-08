@@ -11,7 +11,7 @@ class DetermineCubit extends Cubit<DetermineState> {
   void showRandoms() {
     emit(ChangeState());
     isVisible = true;
-    Future.delayed(const Duration(seconds: 3)).then((value) {
+    Future.delayed(const Duration(seconds: 5)).then((value) {
       isVisible = false;
       emit(ChangeState());
     });
