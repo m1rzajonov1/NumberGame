@@ -7,6 +7,13 @@ class GameHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: ((context) => DetermineCubit()),
+      child: myScaffold(context),
+    );
+  }
+
+  Scaffold myScaffold(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.greenAccent,
@@ -20,7 +27,7 @@ class GameHomeView extends StatelessWidget {
       backgroundColor: Colors.greenAccent,
       body: GridView.builder(
         gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          const  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.all(10.0),
@@ -39,7 +46,6 @@ class GameHomeView extends StatelessWidget {
                     : const Text(""),
               ),
               onTap: () {
-                
                 context.read<DetermineCubit>().tekshiribOchir(index);
               },
             ),
@@ -53,7 +59,6 @@ class GameHomeView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 40),
             child: FloatingActionButton(
-              
               onPressed: () {
                 context.read<DetermineCubit>().restartRand();
               },
