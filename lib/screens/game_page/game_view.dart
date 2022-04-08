@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gamenums/screens/game_page/game_cubit.dart';
+import 'package:gamenums/screens/game_page/game_state.dart';
 
 class GameHomeView extends StatelessWidget {
   const GameHomeView({Key? key}) : super(key: key);
@@ -24,8 +25,8 @@ class GameHomeView extends StatelessWidget {
           style: TextStyle(fontSize: 30, color: Colors.green),
         ),
       ),
-      backgroundColor: Colors.greenAccent,
-      body: BlocBuilder(
+      backgroundColor:const Color.fromARGB(255, 125, 200, 164),
+      body: BlocBuilder<DetermineCubit, DetermineState>(
         builder: ((context, state) {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
